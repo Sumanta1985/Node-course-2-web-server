@@ -12,7 +12,6 @@ hbs.registerHelper('getCurrentyear',()=>{
 }); /*Helper function for year in all the urls (/,/about,/bad)*/
 app.set('view engine','hbs');   /* to let express know that view engine HBS will be used*/
 
-app.use(express.static(__dirname+'/public')); /*Expres middleware statis Html page rendering */
 app.use((req,res,next)=>{
   var now=new Date().toString();
   fs.appendFile('server.log',`${now},${req.method},${req.url}\n`,()=>{});
@@ -27,6 +26,8 @@ app.use((req,res,next)=>{
 //     pageContent:`Miantenence going on. Will be back soon`
 //   });
 // });
+
+app.use(express.static(__dirname+'/public')); /*Expres middleware statis Html page rendering */
 
 app.get('/',(req,res)=>{
 //  res.send("<h1>Hello World</h1>");
